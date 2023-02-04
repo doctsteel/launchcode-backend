@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  username   String   @unique
+  password   String
+  created_at DateTime @default(now())
+  role       Role
+  Quote     Quote[]
+
+  @@map("users")
+}
+
+model Quote {
+  id              String          @id @default(uuid())
+  departure_loc   String
+  destination_loc String
+  departure_date  DateTime
+  return_date     DateTime
+  traveler_qty    Int
+  transportation  TransportMethod
+  contact_info    String
+  status          QuoteStatus
+  price           Int
+  created_at      DateTime        @default(now())
+  user            User            @relation(fields: [userId], references: [id])
+  userId          String
+
+  @@map("quotes")
+}
+
+enum Role {
+  ADMIN
+  OPERATOR
+  BASIC
+}
+
+enum QuoteStatus {
+  OPEN
+  WAITING_PAYMENT
+  CLOSED
+}
+
+enum TransportMethod {
+  CAR
+  BUS
+  PLANE
+  TELETRANSPORT
+}
