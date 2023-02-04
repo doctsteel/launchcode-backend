@@ -32,7 +32,7 @@ async function main() {
             return_date: new Date('2022-10-31 06:31:55'),
             traveler_qty: 12,
             transportation: 'BUS',
-            contact_info: 'vpleasants1@seesaa.net',
+            contact_info: 'vpleasafnts1@seesaa.net',
             status: 'WAITING_PAYMENT',
             price: 4998,
           },
