@@ -32,7 +32,7 @@ COPY . .
 
 RUN yarn build
 
-RUN cd dist && cd src && ls
+ENV JWT_SECRET=${JWT_SECRET}
 
 #COPY --from=development /usr/src/app/dist ./dist
 
