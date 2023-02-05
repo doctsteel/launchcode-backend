@@ -30,6 +30,10 @@ RUN yarn --only=production
 
 COPY . .
 
+RUN yarn build
+
+RUN cd dist && cd src && ls
+
 #COPY --from=development /usr/src/app/dist ./dist
 
 EXPOSE 3000
