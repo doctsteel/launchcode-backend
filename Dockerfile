@@ -5,8 +5,6 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 COPY prisma ./prisma/
 
-RUN yarn add glob rimraf
-
 RUN yarn --only=development
 
 COPY . .
@@ -24,15 +22,17 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 COPY prisma ./prisma/
 
-RUN yarn add glob rimraf
-
 RUN yarn --only=production
 
 COPY . .
 
 RUN yarn build
 
-ENV JWT_SECRET=${JWT_SECRET}
+ARG JWT_SECRET
+ENV JWT_SECRET ${JWT_SECRET}
+
+ARG DATABASE_URL
+ENV DATABASE_URL ${DATABASE_URL}
 
 #COPY --from=development /usr/src/app/dist ./dist
 
