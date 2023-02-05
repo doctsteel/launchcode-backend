@@ -35,7 +35,7 @@ ARG DATABASE_URL
 ENV DATABASE_URL ${DATABASE_URL}
 
 ARG PORT
-ENV PORT $PORT
+ENV PORT ${PORT}
 
 #COPY --from=development /usr/src/app/dist ./dist
 
