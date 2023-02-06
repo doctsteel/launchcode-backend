@@ -1,4 +1,4 @@
-FROM node:18-slim As development
+FROM node:18-slim as development
 
 WORKDIR /usr/src/app
 
@@ -27,15 +27,6 @@ RUN yarn --only=production
 COPY . .
 
 RUN yarn build
-
-ARG JWT_SECRET
-ENV JWT_SECRET ${JWT_SECRET}
-
-ARG DATABASE_URL
-ENV DATABASE_URL ${DATABASE_URL}
-
-ARG PORT
-ENV PORT ${PORT}
 
 #COPY --from=development /usr/src/app/dist ./dist
 
